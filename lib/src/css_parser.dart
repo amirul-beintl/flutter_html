@@ -1051,18 +1051,10 @@ class ExpressionMapping {
     } else if (value is css.RemTerm) {
       return LineHeight.rem(double.tryParse(value.text)!);
     } else if (value is css.LengthTerm) {
-      if (value.toString().contains("px")) {
-        return LineHeight(
-            double.parse(
-                value.text.replaceAll(RegExp(r'\s+(\d+\.\d+)\s+'), '')) /
-                10,
-            units: "px");
-      } else {
-        return LineHeight(
-            double.tryParse(
-                value.text.replaceAll(RegExp(r'\s+(\d+\.\d+)\s+'), '')),
-            units: "length");
-      }
+      return LineHeight(
+          double.tryParse(
+              value.text.replaceAll(RegExp(r'\s+(\d+\.\d+)\s+'), '')),
+          units: "length");
     }
     return LineHeight.normal;
   }
